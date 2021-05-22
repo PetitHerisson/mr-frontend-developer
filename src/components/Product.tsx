@@ -6,7 +6,10 @@ import { ADD_TO_CART } from '../reducer';
 
 const Container = styled.div`
     width: 500px;
-    margin-left: 150px;
+    @media(max-width: 768px) {
+        width: 100%;
+        margin: 10px;
+    }
 `;
 const Name = styled.div`
     font-size: 20px;

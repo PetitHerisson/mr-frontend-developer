@@ -4,21 +4,25 @@ import styled from 'styled-components'
 import { RootState } from '../reducer'
 import { ProductType } from '../type'
 import tee from './classic-tee.jpg'
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
-
+import shoppingCart from './shopping_cart_black_24dp.svg'
 const Container = styled.div`
     background: #F6F6F7;
     color: #888;
     margin-top: 20px;
-    padding: 10px;
+    height: 25px;
+    line-height: 20px;
     text-align: right;
     position: relative;
 `;
 const Title = styled.div`
     font-size: 12px;
-    margin-right: 160px;
+    position: absolute;
+    right: 160px;
     cursor: pointer;
     z-index: 2;
+    @media(max-width: 768px) {
+        right: 20px;
+    }
 `;
 const Cart = styled.div`
     position: absolute;
@@ -30,6 +34,10 @@ const Cart = styled.div`
     background: #fff;
     width: 280px;
     z-index: 1;
+    @media(max-width: 768px) {
+        left: 25px;
+        width: 95%;
+    }
 `;
 const Row = styled.div`
     display: flex;
@@ -45,6 +53,7 @@ const MiniCart = () => {
     const [visibility, setVisibility] = React.useState(false)
     const products = useSelector<RootState, ProductType[]>(state => state.reducer)
     let productInCart = 0;
+    let width = window.innerWidth
     products.forEach(i => {
         productInCart += i.quantity
     })
@@ -53,7 +62,9 @@ const MiniCart = () => {
     }
     return (
         <Container>
-            <Title onClick={showCart}>My Cart ({productInCart})</Title>
+            <Title onClick={showCart}>
+                {width > 768 ? 'My Cart ' : <img src={shoppingCart} />} ({productInCart})
+            </Title>
             {visibility &&
                 <Cart>
                     {products.map(i => (
