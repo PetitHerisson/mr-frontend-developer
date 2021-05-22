@@ -8,7 +8,7 @@ const Container = styled.div`
 `;
 const Picture = () => {
     return (
-        <Container><img src={tee} width='400px' /></Container>
+        <Container><img src={tee} alt='Classic Tee' width='400px' /></Container>
     )
 }
 

@@ -10,6 +10,10 @@ const Container = styled.div`
 const Flexbox = styled.div`
     display: flex;
     justify-content: center;
+    flex-direction: row;
+    @media(max-width: 768px) {
+        flex-direction: column;
+    }
 `;
 const Layout = () => {
     return (

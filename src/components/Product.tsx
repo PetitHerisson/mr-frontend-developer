@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import $ from 'jquery'
+import store from '../store';
+import { ADD_TO_CART } from '../reducer';
 
 const Container = styled.div`
     width: 500px;
@@ -69,7 +71,12 @@ const Product = () => {
     const sizeOptions = ['S', 'M', 'L']
     const [selectedSize, setSelectedSize] = React.useState('');
     const addToCart = () => {
-        alert("select a size")
+        if(selectedSize === ''){
+            alert("Please select a size.")
+        }
+        else{
+            store.dispatch(ADD_TO_CART(selectedSize))
+        }
     }
     const handleSizeChange = (size: string) => {
         setSelectedSize(size);
